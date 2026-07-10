@@ -45,6 +45,12 @@ NYANPASS3_URL="https://ny.nypassline.top"
 NYANPASS3_OPTIMIZE=0
 NYANPASS3_ARGS="-t ${NYANPASS3_TOKEN} -u ${NYANPASS3_URL}"
 
+NYANPASS4_NAME="awshk4"
+NYANPASS4_TOKEN="b630ce19-f1be-433b-a095-bcaeb1dd09ff"
+NYANPASS4_URL="https://nyp.pccwg.us"
+NYANPASS4_OPTIMIZE=0
+NYANPASS4_ARGS="-t ${NYANPASS4_TOKEN} -u ${NYANPASS4_URL}"
+
 IPV4_SERVICES=(
     "https://api.ipify.org"
     "https://ifconfig.me/ip"
@@ -204,6 +210,7 @@ install_nyanpass_all() {
     install_nyanpass 1 "$NYANPASS1_NAME" "$NYANPASS1_OPTIMIZE" "$NYANPASS1_ARGS"
     install_nyanpass 2 "$NYANPASS2_NAME" "$NYANPASS2_OPTIMIZE" "$NYANPASS2_ARGS"
     install_nyanpass 3 "$NYANPASS3_NAME" "$NYANPASS3_OPTIMIZE" "$NYANPASS3_ARGS"
+    install_nyanpass 4 "$NYANPASS4_NAME" "$NYANPASS4_OPTIMIZE" "$NYANPASS4_ARGS"
 }
 
 get_ipv4() {
