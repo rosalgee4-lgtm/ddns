@@ -12,7 +12,7 @@ export LANG=C.UTF-8
 export LC_ALL=C.UTF-8
 
 VPS2_URL="http://154.201.88.224:43300/update"
-SECRET_TOKEN="d6da3d47-b000-4b50-8a44-044bd45ee5f8"
+SECRET_TOKEN="2ad4e8a4-a404-4ead-9d6f-547540db6ba1"
 
 CHECK_INTERVAL=10
 LOG_FILE="/var/log/ddns-monitor.log"
