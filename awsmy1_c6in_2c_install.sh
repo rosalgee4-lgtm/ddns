@@ -30,7 +30,11 @@ NYANPASS_TIMEOUT=600
 NYANPASS1_NAME="awsmy1"
 NYANPASS1_TOKEN="2f3b9c5c-271d-455e-b0a3-bb01e60c2163"
 NYANPASS2_NAME="awsmy2"
-NYANPASS2_TOKEN="698cd7f0-63b8-407a-ac7d-5ff85dbda775"
+NYANPASS2_TOKEN="23eceb88-4a68-4f53-a0e9-3b0736591481"
+# 第三个节点：挂在另一个面板 ny.nekoawa.top
+NYANPASS3_NAME="awsmy3"
+NYANPASS3_TOKEN="aaff0c39-6857-4ba7-aa9a-5a2862a0c0d9"
+NYANPASS3_URL="https://ny.nekoawa.top"
 
 IPV4_SERVICES=(
     "https://api.ipify.org"
@@ -190,6 +194,7 @@ install_nyanpass() {
 install_nyanpass_all() {
     install_nyanpass 1 "$NYANPASS1_NAME" "-t ${NYANPASS1_TOKEN} -u ${NYANPASS_URL}"
     install_nyanpass 2 "$NYANPASS2_NAME" "-o -t ${NYANPASS2_TOKEN} -u ${NYANPASS_URL}"
+    install_nyanpass 3 "$NYANPASS3_NAME" "-o -t ${NYANPASS3_TOKEN} -u ${NYANPASS3_URL}"
 }
 
 get_ipv4() {
@@ -319,17 +324,3 @@ case "${1:-}" in
     --uninstall) uninstall ;;
     *) install_all ;;
 esac
-#!/bin/bash
-# 兼容入口：保持旧文件名，实际执行同目录的一体化安装脚本。
-set -euo pipefail
-
-SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-TARGET_SCRIPT="${SCRIPT_DIR}/vps3_all_in_one_install.sh"
-
-if [[ ! -f "$TARGET_SCRIPT" ]]; then
-    echo "未找到 ${TARGET_SCRIPT}"
-    echo "请把 vps3_all_in_one_install.sh 和 awsmy_c5n_2c_install.sh 放在同一目录后再执行。"
-    exit 1
-fi
-
-exec bash "$TARGET_SCRIPT" "$@"
