@@ -194,7 +194,7 @@ install_nyanpass() {
 install_nyanpass_all() {
     install_nyanpass 1 "$NYANPASS1_NAME" "-t ${NYANPASS1_TOKEN} -u ${NYANPASS_URL}"
     install_nyanpass 2 "$NYANPASS2_NAME" "-o -t ${NYANPASS2_TOKEN} -u ${NYANPASS_URL}"
-    install_nyanpass 3 "$NYANPASS3_NAME" "-o -t ${NYANPASS3_TOKEN} -u ${NYANPASS3_URL}"
+    install_nyanpass 3 "$NYANPASS3_NAME" "-t ${NYANPASS3_TOKEN} -u ${NYANPASS3_URL}"
 }
 
 get_ipv4() {
