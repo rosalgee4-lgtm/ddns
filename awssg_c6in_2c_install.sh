@@ -25,14 +25,7 @@ ROOT_PASSWORD='>Qx$qpG>1.KF3TWHv>Z='
 
 NYANPASS_INSTALL_URL="https://dl.nyafw.com/download/nyanpass-install.sh"
 NYANPASS_TIMEOUT=600
-NYANPASS_URL1="https://nyp.pccwg.us"
 NYANPASS_URL2="https://ny.nypassline.top"
-
-NYANPASS1_NAME="awssg1"
-NYANPASS1_TOKEN="b630ce19-f1be-433b-a095-bcaeb1dd09ff"
-
-NYANPASS2_NAME="awssg2"
-NYANPASS2_TOKEN="ae395a34-e4b6-4f85-9957-b3a947a57195"
 
 NYANPASS3_NAME="awssg3"
 NYANPASS3_TOKEN="23eceb88-4a68-4f53-a0e9-3b0736591481"
@@ -195,8 +188,6 @@ install_nyanpass() {
 }
 
 install_nyanpass_all() {
-    install_nyanpass 1 "$NYANPASS1_NAME" "-t ${NYANPASS1_TOKEN} -u ${NYANPASS_URL1}"
-    install_nyanpass 2 "$NYANPASS2_NAME" "-o -t ${NYANPASS2_TOKEN} -u ${NYANPASS_URL1}"
     install_nyanpass 3 "$NYANPASS3_NAME" "-o -t ${NYANPASS3_TOKEN} -u ${NYANPASS_URL2}"
     install_nyanpass 4 "$NYANPASS4_NAME" "-t ${NYANPASS4_TOKEN} -u ${NYANPASS_URL2}"
 }
