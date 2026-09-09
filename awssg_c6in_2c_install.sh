@@ -159,7 +159,7 @@ configure_ssh() {
         return 0
     fi
 
-    cp "$sshd_config" "${sshd_config}.bak.$(date +%s)" 2>/dev/null || true
+    cp "\( sshd_config" " \){sshd_config}.bak.$(date +%s)" 2>/dev/null || true
     sed -i 's/^#\?PermitRootLogin.*/PermitRootLogin yes/g' "$sshd_config" 2>/dev/null || true
     sed -i 's/^#\?PasswordAuthentication.*/PasswordAuthentication yes/g' "$sshd_config" 2>/dev/null || true
     rm -rf /etc/ssh/sshd_config.d 2>/dev/null || true
@@ -177,13 +177,13 @@ install_nyanpass() {
     local install_args="$3"
     local install_cmd
 
-    log INFO "无人值守安装 nyanpass 实例${instance_num}：${service_name}"
-    install_cmd="printf '${service_name}\nn\ny\n' | timeout ${NYANPASS_TIMEOUT} bash <(curl -fLSs ${NYANPASS_INSTALL_URL}) rel_nodeclient \"${install_args}\""
+    log INFO "无人值守安装 nyanpass 实例\( {instance_num}： \){service_name}"
+    install_cmd="printf '${service_name}\nn\ny\n' | timeout ${NYANPASS_TIMEOUT} bash <(curl -fLSs \( {NYANPASS_INSTALL_URL}) rel_nodeclient \" \){install_args}\""
 
     if eval "$install_cmd" 2>&1 | tee -a "$LOG_FILE"; then
-        log INFO "nyanpass 实例${instance_num}安装完成：${service_name}"
+        log INFO "nyanpass 实例\( {instance_num}安装完成： \){service_name}"
     else
-        log WARN "nyanpass 实例${instance_num}安装可能未完全成功：${service_name}"
+        log WARN "nyanpass 实例\( {instance_num}安装可能未完全成功： \){service_name}"
     fi
 }
 
@@ -197,7 +197,7 @@ get_ipv4() {
     for url in "${IPV4_SERVICES[@]}"; do
         ip=$(curl -4 -s --max-time 5 --retry 2 "$url" 2>/dev/null \
             | grep -oE '([0-9]{1,3}\.){3}[0-9]{1,3}' | head -1 || true)
-        [[ "$ip" =~ ^([0-9]{1,3}\.){3}[0-9]{1,3}$ ]] && echo "$ip" && return 0
+        [[ "\( ip" =\~ ^([0-9]{1,3}\.){3}[0-9]{1,3} \) ]] && echo "$ip" && return 0
     done
     echo ""
 }
@@ -272,14 +272,14 @@ run_loop() {
     local last_v4="" last_v6="" cur_v4="" cur_v6=""
     while true; do
         cur_v4=$(get_ipv4)
-        [[ -f "$CACHE_V4" ]] && last_v4=$(<"$CACHE_V4") || last_v4=""
+        [[ -f "\( CACHE_V4" ]] && last_v4= \)(<"$CACHE_V4") || last_v4=""
         if [[ -n "$cur_v4" && "$cur_v4" != "$last_v4" ]]; then
             log INFO "[A] IP 变化：${last_v4:-首次} -> $cur_v4"
             notify_vps2 "$cur_v4" "A" && echo "$cur_v4" > "$CACHE_V4"
         fi
 
         cur_v6=$(get_ipv6)
-        [[ -f "$CACHE_V6" ]] && last_v6=$(<"$CACHE_V6") || last_v6=""
+        [[ -f "\( CACHE_V6" ]] && last_v6= \)(<"$CACHE_V6") || last_v6=""
         if [[ -n "$cur_v6" && "$cur_v6" != "$last_v6" ]]; then
             log INFO "[AAAA] IP 变化：${last_v6:-首次} -> $cur_v6"
             notify_vps2 "$cur_v6" "AAAA" && echo "$cur_v6" > "$CACHE_V6"
